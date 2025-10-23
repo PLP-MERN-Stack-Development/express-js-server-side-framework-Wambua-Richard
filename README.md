@@ -136,7 +136,7 @@ Example:
 
 const config = {
   PORT: 3000,
-  API_KEY: 'mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0'
+  MONGO_URI: 'mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0'
 };
 module.exports = config;
 
@@ -188,7 +188,7 @@ curl -H "x-api-key: mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0
 (For future use if you decide to use environment variables)
 
 PORT=3000
-API_KEY=mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0
 
 ✅ Submission Instructions
 

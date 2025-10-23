@@ -1,9 +1,14 @@
 // Import the Express module
 const express = require('express');
 
+// Load environment variables from .env file
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Create an Express application
 const app = express();
 
+// Import configuration and routes
 const config = require('./config');
 const productRoutes = require('./routes');
 
@@ -15,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// JSON parser
+// Middleware: JSON parser
 app.use(express.json());
 
 // Authentication middleware
@@ -43,7 +48,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).json({ status: 'error', message });
 });
 
-// Start server
-app.listen(config.PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${config.PORT}`);
-});
+
+// Start the server after connecting to the database
+const PORT = process.env.PORT || 3000;
