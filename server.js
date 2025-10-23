@@ -1,71 +1,49 @@
-// server.js - Starter Express server for Week 2 assignment
-
-// Import required modules
+// Import the Express module
 const express = require('express');
-const bodyParser = require('body-parser');
-const { v4: uuidv4 } = require('uuid');
 
-// Initialize Express app
+// Create an Express application
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware setup
-app.use(bodyParser.json());
+const config = require('./config');
+const productRoutes = require('./routes');
 
-// Sample in-memory products database
-let products = [
-  {
-    id: '1',
-    name: 'Laptop',
-    description: 'High-performance laptop with 16GB RAM',
-    price: 1200,
-    category: 'electronics',
-    inStock: true
-  },
-  {
-    id: '2',
-    name: 'Smartphone',
-    description: 'Latest model with 128GB storage',
-    price: 800,
-    category: 'electronics',
-    inStock: true
-  },
-  {
-    id: '3',
-    name: 'Coffee Maker',
-    description: 'Programmable coffee maker with timer',
-    price: 50,
-    category: 'kitchen',
-    inStock: false
+// --- MIDDLEWARES ---
+
+// Logger middleware
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+// JSON parser
+app.use(express.json());
+
+// Authentication middleware
+app.use((req, res, next) => {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== config.API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized: Invalid API key' });
   }
-];
+  next();
+});
 
-// Root route
+// Root endpoint
 app.get('/', (req, res) => {
-  res.send('Welcome to the Product API! Go to /api/products to see all products.');
+  res.send('Hello World from Express.js API!');
 });
 
-// TODO: Implement the following routes:
-// GET /api/products - Get all products
-// GET /api/products/:id - Get a specific product
-// POST /api/products - Create a new product
-// PUT /api/products/:id - Update a product
-// DELETE /api/products/:id - Delete a product
+// Product routes
+app.use('/api/products', productRoutes);
 
-// Example route implementation for GET /api/products
-app.get('/api/products', (req, res) => {
-  res.json(products);
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('❌ Error:', err.message);
+  const statusCode = err.statusCode || 500;
+  const message = err.isOperational ? err.message : 'Internal Server Error';
+  res.status(statusCode).json({ status: 'error', message });
 });
 
-// TODO: Implement custom middleware for:
-// - Request logging
-// - Authentication
-// - Error handling
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// Start server
+app.listen(config.PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${config.PORT}`);
 });
-
-// Export the app for testing purposes
-module.exports = app; 
