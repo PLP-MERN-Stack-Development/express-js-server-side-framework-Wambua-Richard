@@ -108,7 +108,7 @@ npm -v
 
 Clone or create your project folder and navigate to it:
 
-git clone <your-repo-url>
+git clone https://github.com/PLP-MERN-Stack-Development/express-js-server-side-framework-Wambua-Richard.git
 cd express-api
 
 
@@ -136,7 +136,7 @@ Example:
 
 const config = {
   PORT: 3000,
-  API_KEY: '12345'
+  API_KEY: 'mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0'
 };
 module.exports = config;
 
@@ -156,7 +156,7 @@ You should see:
 http://localhost:3000/api/products
 
 🔸 Headers
-x-api-key: 12345
+x-api-key: mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0
 Content-Type: application/json
 
 🔸 Endpoints
@@ -172,7 +172,7 @@ GET	/api/products?page=1&limit=2	Paginate results	/api/products?page=1&limit=2	[
 GET	/api/products/stats/data	Product statistics	/api/products/stats/data	{ "Food": 2, "Home": 1, "Health": 2 }
 ⚙️ Example Usage (via curl)
 GET all products
-curl -H "x-api-key: 12345" http://localhost:3000/api/products
+curl -H "x-api-key: mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0" http://localhost:3000/api/products
 
 POST new product
 curl -X POST http://localhost:3000/api/products \
@@ -181,14 +181,14 @@ curl -X POST http://localhost:3000/api/products \
   -d '{"name":"Honey Comb","description":"Raw honey comb","price":20,"category":"Food","inStock":true}'
 
 GET product statistics
-curl -H "x-api-key: 12345" http://localhost:3000/api/products/stats/data
+curl -H "x-api-key: mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0" http://localhost:3000/api/products/stats/data
 
 🧰 .env.example
 
 (For future use if you decide to use environment variables)
 
 PORT=3000
-API_KEY=12345
+API_KEY=mongodb+srv://wambuarichard335_db_user:RichAtlas@96@cluster0.94glyro.mongodb.net/rich_expressjs?retryWrites=true&w=majority&appName=Cluster0
 
 ✅ Submission Instructions
 
