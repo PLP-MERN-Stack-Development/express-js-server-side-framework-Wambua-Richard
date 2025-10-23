@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 
 // In-memory database
 let products = [

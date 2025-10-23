@@ -5,6 +5,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
 
+// Get the port from environment variables or default to 3000
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/expressjsdb';
+
 // Create an Express application
 const app = express();
 
@@ -50,4 +54,6 @@ app.use((err, req, res, next) => {
 
 
 // Start the server after connecting to the database
-const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
